@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Edukasi Anak SD</title>
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        xintegrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest/dist/lucide.min.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(to bottom right, #60a5fa, #8b5cf6);
+            /* Gradient from blue-400 to purple-600 */
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            color: white;
+            overflow-x: hidden;
+            /* Prevent horizontal scroll */
+        }
+
+        .container-custom {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 1.5rem;
+            /* rounded-3xl */
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            /* shadow-2xl */
+            width: 100%;
+            max-width: 32rem;
+            /* max-w-md for home, max-w-2xl for selection, max-w-xl for gameplay, max-w-lg for leaderboard */
+            text-align: center;
+            transform: scale(1);
+            transition: all 0.5s ease-in-out;
+        }
+
+        .container-custom:hover {
+            transform: scale(1.02);
+            /* hover:scale-105 */
+        }
+
+        /* Custom Button Styles (to match previous React Tailwind look) */
+        .btn-green-gradient {
+            background-image: linear-gradient(to right, #22c55e, #16a34a);
+            /* from-green-500 to-green-600 */
+            color: white;
+            font-weight: bold;
+            padding: 1rem 1.5rem;
+            /* py-4 px-6 */
+            border-radius: 0.75rem;
+            /* rounded-xl */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            /* shadow-lg */
+            transition: all 0.3s ease-in-out;
+            border: none;
+        }
+
+        .btn-green-gradient:hover {
+            background-image: linear-gradient(to right, #16a34a, #15803d);
+            /* hover:from-green-600 hover:to-green-700 */
+            transform: scale(1.02);
+            /* hover:scale-105 */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+            /* hover:shadow-xl */
+        }
+
+        .btn-yellow-gradient {
+            background-image: linear-gradient(to right, #eab308, #ca8a04);
+            /* from-yellow-500 to-yellow-600 */
+            color: white;
+            font-weight: bold;
+            padding: 1rem 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+            border: none;
+        }
+
+        .btn-yellow-gradient:hover {
+            background-image: linear-gradient(to right, #ca8a04, #a16207);
+            /* hover:from-yellow-600 hover:to-yellow-700 */
+            transform: scale(1.02);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-blue-gradient {
+            background-image: linear-gradient(to right, #3b82f6, #2563eb);
+            /* from-blue-500 to-blue-600 */
+            color: white;
+            font-weight: bold;
+            padding: 1rem 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+            border: none;
+        }
+
+        .btn-blue-gradient:hover {
+            background-image: linear-gradient(to right, #2563eb, #1d4ed8);
+            /* hover:from-blue-600 hover:to-blue-700 */
+            transform: scale(1.02);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-purple-gradient {
+            background-image: linear-gradient(to right, #8b5cf6, #7c3aed);
+            /* from-purple-500 to-purple-600 */
+            color: white;
+            font-weight: bold;
+            padding: 1rem 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+            border: none;
+        }
+
+        .btn-purple-gradient:hover {
+            background-image: linear-gradient(to right, #7c3aed, #6d28d9);
+            /* hover:from-purple-600 hover:to-purple-700 */
+            transform: scale(1.02);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-red-gradient {
+            background-image: linear-gradient(to right, #ef4444, #dc2626);
+            /* from-red-500 to-red-600 */
+            color: white;
+            font-weight: bold;
+            padding: 0.75rem 1.5rem;
+            /* py-3 px-6 */
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+            border: none;
+        }
+
+        .btn-red-gradient:hover {
+            background-image: linear-gradient(to right, #dc2626, #b91c1c);
+            /* hover:from-red-600 hover:to-red-700 */
+            transform: scale(1.02);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-gray-gradient {
+            background-image: linear-gradient(to right, #9ca3af, #6b7280);
+            /* from-gray-400 to-gray-500 */
+            color: white;
+            font-weight: bold;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+            border: none;
+        }
+
+        .btn-gray-gradient:hover {
+            background-image: linear-gradient(to right, #6b7280, #4b5563);
+            /* hover:from-gray-500 hover:to-gray-600 */
+            transform: scale(1.02);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Input field style */
+        .form-control-custom {
+            width: 100%;
+            padding: 1rem;
+            /* p-4 */
+            margin-bottom: 1.5rem;
+            /* mb-6 */
+            color: #1f2937;
+            /* text-gray-800 */
+            border: 2px solid #93c5fd;
+            /* border-blue-300 */
+            border-radius: 0.75rem;
+            /* rounded-xl */
+            outline: none;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .form-control-custom:focus {
+            border-color: #3b82f6;
+            /* focus:border-blue-500 */
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.25);
+            /* focus:ring-4 focus:ring-blue-200 */
+        }
+
+        .form-control-custom::placeholder {
+            color: #9ca3af;
+            /* placeholder-gray-400 */
+        }
+
+        /* Progress bar */
+        .progress-custom {
+            height: 1rem;
+            /* h-4 */
+            background-color: #e5e7eb;
+            /* bg-gray-200 */
+            border-radius: 9999px;
+            /* rounded-full */
+        }
+
+        .progress-bar-custom {
+            height: 100%;
+            background-image: linear-gradient(to right, #4ade80, #22c55e);
+            /* from-green-400 to-green-600 */
+            border-radius: 9999px;
+            /* rounded-full */
+            transition: width 0.5s ease-out;
+        }
+
+        /* Question box */
+        .question-box {
+            background-color: #dbeafe;
+            /* bg-blue-100 */
+            padding: 1.5rem;
+            /* p-6 */
+            border-radius: 1rem;
+            /* rounded-2xl */
+            margin-bottom: 2rem;
+            /* mb-8 */
+            box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+            /* shadow-inner */
+        }
+
+        /* Feedback messages */
+        .feedback-message {
+            padding: 0.75rem;
+            /* p-3 */
+            border-radius: 0.5rem;
+            /* rounded-lg */
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            /* shadow-md */
+            margin-top: 1rem;
+            /* mt-4 */
+        }
+
+        .feedback-correct {
+            background-color: #dcfce7;
+            /* bg-green-100 */
+            color: #16a34a;
+            /* text-green-700 */
+        }
+
+        .feedback-incorrect {
+            background-color: #fee2e2;
+            /* bg-red-100 */
+            color: #dc2626;
+            /* text-red-700 */
+        }
+
+        .feedback-warning {
+            background-color: #fffbeb;
+            /* bg-yellow-100 */
+            color: #d97706;
+            /* text-yellow-700 */
+        }
+
+        /* Modal styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            /* bg-black bg-opacity-50 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1050;
+            /* Higher than Bootstrap's default modal z-index */
+        }
+
+        .modal-content-custom {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            /* rounded-2xl */
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            /* shadow-xl */
+            text-align: center;
+            max-width: 24rem;
+            /* max-w-sm */
+            width: 100%;
+        }
+
+        /* Animations */
+        .animate-bounce {
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(-5%);
+                animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+            }
+
+            50% {
+                transform: translateY(0);
+                animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+            }
+        }
+
+        .animate-fade-in-down {
+            animation: fadeInDown 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .d-none {
+            display: none !important;
+        }
+
+        .d-block {
+            display: block !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app-container" class="d-flex flex-column align-items-center justify-content-center w-100">
+
+        <!-- Home Page -->
+        <div id="home-page" class="container-custom">
+            <h1 class="text-dark fs-1 fw-bold mb-4 animate-bounce">Selamat Datang di Game Edukasi!</h1>
+            <p class="text-secondary mb-4 fs-5">Yuk, belajar sambil bermain! Masukkan namamu dulu ya.</p>
+            <input type="text" id="playerNameInput" placeholder="Masukkan Namamu" class="form-control-custom">
+            <button id="startButton" class="btn w-100 btn-green-gradient mb-3">
+                Mulai Bermain <i data-lucide="play" class="ms-2"></i>
+            </button>
+            <button id="leaderboardButtonHome" class="btn w-100 btn-yellow-gradient">
+                Lihat Peringkat <i data-lucide="trophy" class="ms-2"></i>
+            </button>
+            <div id="homeFeedback" class="feedback-message feedback-warning d-none"></div>
+        </div>
+
+        <!-- Game Selection Page -->
+        <div id="game-selection-page" class="container-custom d-none" style="max-width: 48rem;">
+            <h2 class="text-dark fs-2 fw-bold mb-4">Hai, <span id="selectedPlayerName"></span>! Pilih Kategori Game:
+            </h2>
+            <div class="row g-4 mb-4">
+                <div class="col-12 col-md-6">
+                    <button id="arithmeticCategory" class="btn w-100 p-4 fs-4 fw-bold shadow-lg btn-blue-gradient">
+                        Aritmatika <i data-lucide="list" class="ms-2"></i>
+                    </button>
+                </div>
+                <div class="col-12 col-md-6">
+                    <button id="guessingCategory" class="btn w-100 p-4 fs-4 fw-bold shadow-lg btn-green-gradient">
+                        Tebak-tebakan <i data-lucide="play" class="ms-2"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div id="arithmeticTypes"
+                class="mb-4 p-4 bg-primary-subtle rounded-4 shadow-inner animate-fade-in-down d-none">
+                <h3 class="text-primary fs-3 fw-bold mb-3">Pilih Jenis Aritmatika:</h3>
+                <div class="row g-3">
+                    <div class="col-6"><button data-type="addition"
+                            class="btn w-100 p-3 fs-5 fw-semibold shadow-sm btn-purple-gradient">Penjumlahan
+                            (+)</button></div>
+                    <div class="col-6"><button data-type="subtraction"
+                            class="btn w-100 p-3 fs-5 fw-semibold shadow-sm btn-purple-gradient">Pengurangan
+                            (-)</button></div>
+                    <div class="col-6"><button data-type="multiplication"
+                            class="btn w-100 p-3 fs-5 fw-semibold shadow-sm btn-purple-gradient">Perkalian (x)</button>
+                    </div>
+                    <div class="col-6"><button data-type="division"
+                            class="btn w-100 p-3 fs-5 fw-semibold shadow-sm btn-purple-gradient">Pembagian (:)</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="guessingTypes"
+                class="mb-4 p-4 bg-success-subtle rounded-4 shadow-inner animate-fade-in-down d-none">
+                <h3 class="text-success fs-3 fw-bold mb-3">Pilih Jenis Tebak-tebakan:</h3>
+                <div class="row g-3">
+                    <div class="col-4"><button data-type="animals"
+                            class="btn w-100 p-3 fs-5 fw-semibold shadow-sm btn-red-gradient">Hewan 🦁</button></div>
+                    <div class="col-4"><button data-type="fruits"
+                            class="btn w-100 p-3 fs-5 fw-semibold shadow-sm btn-red-gradient">Buah 🍎</button></div>
+                    <div class="col-4"><button data-type="vegetables"
+                            class="btn w-100 p-3 fs-5 fw-semibold shadow-sm btn-red-gradient">Sayuran 🥕</button></div>
+                </div>
+            </div>
+
+            <button id="startGameButton" class="btn w-100 btn-yellow-gradient mb-3 d-none">
+                Mulai Game! <i data-lucide="play" class="ms-2"></i>
+            </button>
+            <button id="backToHomeFromSelection" class="btn w-100 btn-gray-gradient">
+                <i data-lucide="chevron-left" class="me-2"></i> Kembali
+            </button>
+            <div id="selectionFeedback" class="feedback-message feedback-warning d-none"></div>
+        </div>
+
+        <!-- Game Play Page -->
+        <div id="game-play-page" class="container-custom d-none" style="max-width: 40rem;">
+            <h2 class="text-dark fs-3 fw-bold mb-3">Soal ke-<span id="questionNumber">1</span> dari 10</h2>
+            <div class="progress progress-custom mb-4">
+                <div id="progressBar" class="progress-bar progress-bar-custom" role="progressbar" style="width: 0%;"
+                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+
+            <div class="question-box">
+                <p id="questionText" class="text-primary fs-1 fw-bold mb-0 animate-fade-in-up"></p>
+            </div>
+
+            <div id="optionsContainer" class="row g-3 mb-4">
+                <!-- Options will be dynamically inserted here -->
+            </div>
+
+            <div id="gamePlayFeedback" class="feedback-message d-none"></div>
+        </div>
+
+        <!-- Score Page -->
+        <div id="score-page" class="container-custom d-none">
+            <h2 class="text-dark fs-3 fw-bold mb-4">Selamat, <span id="scorePlayerName"></span>!</h2>
+            <p class="text-secondary mb-4 fs-4">
+                Skor Akhirmu: <span id="finalScore" class="fw-bold text-success fs-2">0</span> dari 10
+            </p>
+            <button id="playAgainButton" class="btn w-100 btn-blue-gradient mb-3">
+                Main Lagi! <i data-lucide="play" class="ms-2"></i>
+            </button>
+            <button id="leaderboardButtonScore" class="btn w-100 btn-yellow-gradient mb-3">
+                Lihat Peringkat <i data-lucide="trophy" class="ms-2"></i>
+            </button>
+            <button id="backToHomeFromScore" class="btn w-100 btn-gray-gradient">
+                <i data-lucide="home" class="me-2"></i> Kembali ke Beranda
+            </button>
+        </div>
+
+        <!-- Leaderboard Page -->
+        <div id="leaderboard-page" class="container-custom d-none" style="max-width: 48rem;">
+            <h2 class="text-dark fs-3 fw-bold mb-4">Peringkat Pemain Terbaik! <i data-lucide="trophy"
+                    class="ms-2 text-warning"></i></h2>
+            <div class="table-responsive rounded-3 shadow-sm mb-4">
+                <table class="table table-bordered table-striped text-dark mb-0">
+                    <thead class="bg-light">
+                        <tr>
+                            <th scope="col" class="py-3 px-4 text-start fs-6 fw-semibold text-uppercase">Peringkat</th>
+                            <th scope="col" class="py-3 px-4 text-start fs-6 fw-semibold text-uppercase">Nama Pemain
+                            </th>
+                            <th scope="col" class="py-3 px-4 text-start fs-6 fw-semibold text-uppercase">Skor</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leaderboardTableBody">
+                        <!-- Leaderboard entries will be dynamically inserted here -->
+                    </tbody>
+                </table>
+            </div>
+            <p id="emptyLeaderboardMessage" class="text-secondary fs-5 d-none">Belum ada skor yang tercatat. Skor tidak
+                disimpan setelah aplikasi ditutup.</p>
+
+            <button id="resetLeaderboardButton" class="btn w-100 btn-red-gradient mb-3">
+                <i data-lucide="trash-2" class="me-2"></i> Reset Peringkat (Lokal)
+            </button>
+            <button id="backToHomeFromLeaderboard" class="btn w-100 btn-gray-gradient">
+                <i data-lucide="home" class="me-2"></i> Kembali ke Beranda
+            </button>
+            <div id="leaderboardFeedback" class="feedback-message feedback-correct d-none"></div>
+        </div>
+
+        <!-- Reset Confirmation Modal -->
+        <div id="resetConfirmModal" class="modal-overlay d-none">
+            <div class="modal-content-custom animate-fade-in-down">
+                <h3 class="text-dark fs-4 fw-bold mb-3">Konfirmasi Reset Peringkat</h3>
+                <p class="text-secondary mb-4">Apakah Anda yakin ingin mereset semua data peringkat? Tindakan ini tidak
+                    dapat dibatalkan.</p>
+                <div class="d-flex justify-content-center gap-3">
+                    <button id="confirmResetButton" class="btn btn-red-gradient">
+                        Ya, Reset!
+                    </button>
+                    <button id="cancelResetButton" class="btn btn-gray-gradient">
+                        Batal
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Bootstrap JS CDN (Bundle with Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script>
+        // --- Global State Variables ---
+        let currentPage = 'home';
+        let playerName = '';
+        let gameCategory = ''; // 'arithmetic', 'guessing'
+        let gameType = ''; // 'addition', 'subtraction', 'multiplication', 'division', 'animals', 'fruits', 'vegetables'
+        let score = 0;
+        let questionIndex = 0;
+        let questions = []; // Questions for the current game session (10 questions)
+        let leaderboardData = []; // Local leaderboard data (not persistent)
+
+        // --- DOM Elements ---
+        const homePage = document.getElementById('home-page');
+        const playerNameInput = document.getElementById('playerNameInput');
+        const startButton = document.getElementById('startButton');
+        const leaderboardButtonHome = document.getElementById('leaderboardButtonHome');
+        const homeFeedback = document.getElementById('homeFeedback');
+
+        const gameSelectionPage = document.getElementById('game-selection-page');
+        const selectedPlayerName = document.getElementById('selectedPlayerName');
+        const arithmeticCategory = document.getElementById('arithmeticCategory');
+        const guessingCategory = document.getElementById('guessingCategory');
+        const arithmeticTypes = document.getElementById('arithmeticTypes');
+        const guessingTypes = document.getElementById('guessingTypes');
+        const startGameButton = document.getElementById('startGameButton');
+        const backToHomeFromSelection = document.getElementById('backToHomeFromSelection');
+        const selectionFeedback = document.getElementById('selectionFeedback');
+
+        const gamePlayPage = document.getElementById('game-play-page');
+        const questionNumberSpan = document.getElementById('questionNumber');
+        const progressBar = document.getElementById('progressBar');
+        const questionText = document.getElementById('questionText');
+        const optionsContainer = document.getElementById('optionsContainer');
+        const gamePlayFeedback = document.getElementById('gamePlayFeedback');
+
+        const scorePage = document.getElementById('score-page');
+        const scorePlayerName = document.getElementById('scorePlayerName');
+        const finalScoreSpan = document.getElementById('finalScore');
+        const playAgainButton = document.getElementById('playAgainButton');
+        const leaderboardButtonScore = document.getElementById('leaderboardButtonScore');
+        const backToHomeFromScore = document.getElementById('backToHomeFromScore');
+
+        const leaderboardPage = document.getElementById('leaderboard-page');
+        const leaderboardTableBody = document.getElementById('leaderboardTableBody');
+        const emptyLeaderboardMessage = document.getElementById('emptyLeaderboardMessage');
+        const resetLeaderboardButton = document.getElementById('resetLeaderboardButton');
+        const backToHomeFromLeaderboard = document.getElementById('backToHomeFromLeaderboard');
+        const leaderboardFeedback = document.getElementById('leaderboardFeedback');
+
+        const resetConfirmModal = document.getElementById('resetConfirmModal');
+        const confirmResetButton = document.getElementById('confirmResetButton');
+        const cancelResetButton = document.getElementById('cancelResetButton');
+
+        // --- Data for guessing games (emojis) ---
+        const animals = [
+            { name: 'Kucing', hint: '🐱' }, { name: 'Anjing', hint: '🐶' }, { name: 'Burung', hint: '🐦' },
+            { name: 'Ikan', hint: '🐠' }, { name: 'Singa', hint: '🦁' }, { name: 'Gajah', hint: '🐘' },
+            { name: 'Monyet', hint: '🐒' }, { name: 'Kelinci', hint: '🐰' }, { name: 'Bebek', hint: '🦆' },
+            { name: 'Sapi', hint: '🐄' }, { name: 'Kuda', hint: '🐴' }, { name: 'Domba', hint: '🐑' },
+            { name: 'Kambing', hint: '🐐' }, { name: 'Babi', hint: '🐷' }, { name: 'Ayam', hint: '🐔' },
+            { name: 'Harimau', hint: '🐯' }, { name: 'Beruang', hint: '🐻' }, { name: 'Panda', hint: '🐼' },
+            { name: 'Serigala', hint: '🐺' }, { name: 'Rubah', hint: '🦊' }, { name: 'Jerapah', hint: '🦒' },
+            { name: 'Zebra', hint: '🦓' }, { name: 'Kangguru', hint: '🦘' }, { name: 'Koala', hint: '🐨' },
+            { name: 'Pinguin', hint: '🐧' },
+        ];
+
+        const fruits = [
+            { name: 'Apel', hint: '🍎' }, { name: 'Pisang', hint: '🍌' }, { name: 'Jeruk', hint: '🍊' },
+            { name: 'Anggur', hint: '🍇' }, { name: 'Mangga', hint: '🥭' }, { name: 'Nanas', hint: '🍍' },
+            { name: 'Semangka', hint: '🍉' }, { name: 'Stroberi', hint: '🍓' }, { name: 'Alpukat', hint: '🥑' },
+            { name: 'Ceri', hint: '🍒' }, { name: 'Kiwi', hint: '🥝' }, { name: 'Persik', hint: '🍑' },
+            { name: 'Pir', hint: '🍐' }, { name: 'Kelapa', hint: '🥥' }, { name: 'Lemon', hint: '🍋' },
+            { name: 'Delima', hint: '🔴' }, // Using red circle as a generic fruit/seed
+            { name: 'Kurma', hint: '🟫' }, // Using brown square for dates
+            { name: 'Naga', hint: '🟣' }, // Changed to purple circle for dragon fruit
+            { name: 'Leci', hint: '🔴' }, // Red circle for lychee
+            { name: 'Markisa', hint: '🍈' }, // Melon for passion fruit
+            { name: 'Pepaya', hint: '🧡' }, // Orange heart for papaya
+            { name: 'Jambu', hint: '🍐' }, // Pear for guava
+            { name: 'Salak', hint: '🟫' }, // Brown square for snake fruit
+            { name: 'Rambutan', hint: '🍓' }, // Strawberry for rambutan
+            { name: 'Durian', hint: '🍈' }, // Melon for durian
+        ];
+
+        const vegetables = [
+            { name: 'Wortel', hint: '🥕' }, { name: 'Tomat', hint: '🍅' }, { name: 'Kentang', hint: '🥔' },
+            { name: 'Bayam', hint: '🥬' }, { name: 'Brokoli', hint: '🥦' }, { name: 'Jagung', hint: '🌽' },
+            { name: 'Cabai', hint: '🌶️' }, { name: 'Terong', hint: '🍆' }, { name: 'Timun', hint: '🥒' },
+            { name: 'Bawang', hint: '🧅' }, { name: 'Jamur', hint: '🍄' }, { name: 'Kacang Polong', hint: '🫛' },
+            { name: 'Labu', hint: '🎃' }, { name: 'Paprika', hint: '🫑' }, { name: 'Kubis', hint: '🥬' },
+            { name: 'Seledri', hint: '🌿' }, // Herb emoji
+            { name: 'Buncis', hint: '🫛' }, // Peas emoji
+            { name: 'Lobak', hint: '🥕' }, // Carrot for radish
+            { name: 'Asparagus', hint: '🥦' }, // Broccoli for asparagus
+            { name: 'Bawang Putih', hint: '🧅' }, // Onion for garlic
+            { name: 'Jahe', hint: '🥔' }, // Potato for ginger
+            { name: 'Kembang Kol', hint: '🥦' }, // Broccoli for cauliflower
+            { name: 'Ubi Jalar', hint: '🥔' }, // Potato for sweet potato
+            { name: 'Daun Bawang', hint: '🧅' }, // Onion for scallion
+            { name: 'Pare', hint: '🥒' }, // Cucumber for bitter gourd
+        ];
+
+        // --- Helper Functions ---
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        // --- Navigation Functions (Moved to top for clarity and scope) ---
+        function goToHome() {
+            showPage('home-page');
+            playerName = ''; // Reset player name on returning home
+            playerNameInput.value = ''; // Clear input field
+        }
+
+        function goToGameSelection() {
+            console.log("goToGameSelection called. Player Name:", playerNameInput.value);
+            console.log("Trimmed Player Name Length:", playerNameInput.value.trim().length);
+
+            if (playerNameInput.value.trim() === '') {
+                showFeedback(homeFeedback, 'Nama pemain tidak boleh kosong!');
+                return;
+            }
+            playerName = playerNameInput.value.trim(); // Ensure playerName is updated
+            selectedPlayerName.textContent = playerName;
+            showPage('game-selection-page');
+            // Reset category/type selection when going back to selection page
+            gameCategory = '';
+            gameType = '';
+            arithmeticTypes.classList.add('d-none');
+            guessingTypes.classList.add('d-none');
+            startGameButton.classList.add('d-none');
+            // Remove active class from category buttons
+            document.querySelectorAll('#game-selection-page .btn').forEach(btn => {
+                btn.classList.remove('bg-gradient-to-r', 'from-blue-600', 'to-blue-700', 'ring-4', 'ring-blue-300',
+                    'from-green-600', 'to-green-700', 'ring-4', 'ring-green-300',
+                    'from-purple-600', 'to-purple-700', 'ring-4', 'ring-purple-300',
+                    'from-red-600', 'to-red-700', 'ring-4', 'ring-red-300');
+                // Re-add default gradient for category buttons if needed
+                if (btn.id === 'arithmeticCategory') {
+                    btn.classList.add('btn-blue-gradient');
+                } else if (btn.id === 'guessingCategory') {
+                    btn.classList.add('btn-green-gradient');
+                }
+            });
+        }
+
+        function goToGamePlay() {
+            if (!gameCategory || !gameType) {
+                showFeedback(selectionFeedback, 'Pilih kategori dan jenis permainan terlebih dahulu!');
+                return;
+            }
+            generateQuestionsForSession();
+            score = 0;
+            questionIndex = 0;
+            renderQuestion();
+            showPage('game-play-page');
+        }
+
+        function goToScore() {
+            saveScoreLocally();
+            scorePlayerName.textContent = playerName;
+            finalScoreSpan.textContent = score;
+            showPage('score-page');
+        }
+
+        function goToLeaderboard() {
+            showPage('leaderboard-page');
+            renderLeaderboard();
+        }
+
+        function showPage(pageId) {
+            const pages = [homePage, gameSelectionPage, gamePlayPage, scorePage, leaderboardPage, resetConfirmModal];
+            pages.forEach(page => {
+                if (page.id === pageId) {
+                    page.classList.remove('d-none');
+                    page.classList.add('d-block');
+                } else {
+                    page.classList.remove('d-block');
+                    page.classList.add('d-none');
+                }
+            });
+            currentPage = pageId.replace('-page', ''); // Update global state
+            // Adjust max-width for different pages
+            const container = document.getElementById(pageId);
+            if (container) {
+                if (pageId === 'home-page') container.style.maxWidth = '32rem';
+                else if (pageId === 'game-selection-page' || pageId === 'leaderboard-page') container.style.maxWidth = '48rem';
+                else if (pageId === 'game-play-page') container.style.maxWidth = '40rem';
+                else if (pageId === 'score-page') container.style.maxWidth = '32rem';
+            }
+        }
+
+        function showFeedback(element, message, type = 'warning') {
+            element.textContent = message;
+            element.classList.remove('d-none', 'feedback-correct', 'feedback-incorrect', 'feedback-warning');
+            element.classList.add('d-block', `feedback-${type}`);
+            setTimeout(() => {
+                element.classList.remove('d-block');
+                element.classList.add('d-none');
+            }, 2000);
+        }
+
+        // --- Game Logic Functions ---
+
+        function generateArithmeticQuestion(type) {
+            let num1, num2, answer;
+            const maxNum = 20;
+            const minNum = 1;
+
+            let attempts = 0;
+            const maxAttempts = 200;
+            let questionText;
+
+            do {
+                num1 = Math.floor(Math.random() * maxNum) + minNum;
+                num2 = Math.floor(Math.random() * maxNum) + minNum;
+
+                if (type === 'addition') {
+                    answer = num1 + num2;
+                    questionText = `${num1} + ${num2} = ?`;
+                } else if (type === 'subtraction') {
+                    if (num1 < num2) [num1, num2] = [num2, num1];
+                    answer = num1 - num2;
+                    questionText = `${num1} - ${num2} = ?`;
+                } else if (type === 'multiplication') {
+                    answer = num1 * num2;
+                    questionText = `${num1} x ${num2} = ?`;
+                } else if (type === 'division') {
+                    num2 = Math.floor(Math.random() * (maxNum / 2)) + 1;
+                    num1 = num2 * (Math.floor(Math.random() * (maxNum / num2)) + 1);
+                    answer = num1 / num2;
+                    questionText = `${num1} : ${num2} = ?`;
+                }
+                attempts++;
+            } while ((answer < 0 || !Number.isInteger(answer) || answer > 250 || (type === 'division' && num2 === 0)) && attempts < maxAttempts);
+
+            let options = new Set([answer]);
+            while (options.size < 4) {
+                let wrongAnswer;
+                const offsetFactor = Math.random() < 0.5 ? -1 : 1;
+                const baseOffset = Math.floor(Math.random() * 5) + 1;
+                wrongAnswer = answer + (baseOffset * offsetFactor);
+
+                if (Math.random() < 0.3) {
+                    wrongAnswer = Math.floor(Math.random() * (maxNum * maxNum)) + minNum;
+                }
+
+                if (wrongAnswer !== answer && wrongAnswer >= 0 && Number.isInteger(wrongAnswer)) {
+                    options.add(wrongAnswer);
+                }
+            }
+            options = shuffleArray(Array.from(options));
+
+            return { question: questionText, options: options, answer: answer };
+        }
+
+        function generateGuessingQuestion(type) {
+            let dataSet;
+            if (type === 'animals') dataSet = animals;
+            else if (type === 'fruits') dataSet = fruits;
+            else if (type === 'vegetables') dataSet = vegetables;
+
+            if (dataSet.length < 4) {
+                console.error(`Not enough unique items in ${type} dataset for options.`);
+                return null;
+            }
+
+            const shuffledDataSet = shuffleArray([...dataSet]);
+            const correctItem = shuffledDataSet[0];
+
+            let options = new Set([correctItem.name]);
+            let wrongOptionsPool = shuffledDataSet.filter(item => item.name !== correctItem.name);
+            wrongOptionsPool = shuffleArray(wrongOptionsPool);
+
+            for (let i = 0; options.size < 4 && i < wrongOptionsPool.length; i++) {
+                options.add(wrongOptionsPool[i].name);
+            }
+            options = shuffleArray(Array.from(options));
+
+            return { question: correctItem.hint, options: options, answer: correctItem.name, isImageHint: true };
+        }
+
+        function generateQuestionsForSession() {
+            const fullQuestionPool = [];
+            const uniqueQuestionIdentifiers = new Set();
+
+            const targetPoolSize = 20;
+            const sessionQuestionCount = 10;
+
+            let attempts = 0;
+            const maxGenerationAttempts = targetPoolSize * 5;
+
+            while (fullQuestionPool.length < targetPoolSize && attempts < maxGenerationAttempts) {
+                let newQuestion;
+                if (gameCategory === 'arithmetic') {
+                    newQuestion = generateArithmeticQuestion(gameType);
+                } else if (gameCategory === 'guessing') {
+                    newQuestion = generateGuessingQuestion(gameType);
+                }
+
+                if (newQuestion) {
+                    const questionIdentifier = `${newQuestion.question}|${newQuestion.answer}`;
+                    if (!uniqueQuestionIdentifiers.has(questionIdentifier)) {
+                        fullQuestionPool.push(newQuestion);
+                        uniqueQuestionIdentifiers.add(questionIdentifier);
+                    }
+                }
+                attempts++;
+            }
+
+            questions = shuffleArray(fullQuestionPool).slice(0, sessionQuestionCount);
+            console.log(`Generated ${fullQuestionPool.length} questions in pool, selected ${questions.length} for session.`);
+        }
+
+        function renderQuestion() {
+            // Check if there are questions to render or if we've gone past the last question
+            if (questionIndex >= questions.length) {
+                goToScore(); // Go to score page if all questions are answered or no questions generated
+                return;
+            }
+
+            const currentQuestion = questions[questionIndex];
+            questionNumberSpan.textContent = questionIndex + 1;
+            progressBar.style.width = `${((questionIndex + 1) / 10) * 100}%`;
+
+            questionText.classList.remove('animate-fade-in-up'); // Reset animation
+            void questionText.offsetWidth; // Trigger reflow
+            questionText.classList.add('animate-fade-in-up'); // Re-add animation
+
+            if (currentQuestion.isImageHint) {
+                questionText.innerHTML = `<span style="font-size: 8rem;">${currentQuestion.question}</span>`;
+            } else {
+                questionText.textContent = currentQuestion.question;
+            }
+
+            optionsContainer.innerHTML = ''; // Clear previous options
+            currentQuestion.options.forEach((option, index) => {
+                const colDiv = document.createElement('div');
+                colDiv.className = 'col-6';
+                const button = document.createElement('button');
+                button.className = 'btn w-100 p-3 fs-4 fw-semibold shadow-lg btn-purple-gradient';
+                button.textContent = option;
+                button.onclick = () => handleAnswer(option);
+                colDiv.appendChild(button);
+                optionsContainer.appendChild(colDiv);
+            });
+        }
+
+        function handleAnswer(selectedAnswer) {
+            console.log("handleAnswer called. questionIndex:", questionIndex, "questions.length:", questions.length);
+
+            const currentQuestion = questions[questionIndex];
+            // Added a safety check for currentQuestion, though it should be defined now
+            if (!currentQuestion) {
+                console.error("Error: currentQuestion is undefined in handleAnswer. Moving to score page.");
+                goToScore();
+                return;
+            }
+
+            const isCorrect = selectedAnswer === currentQuestion.answer;
+
+            if (isCorrect) {
+                score++;
+                showFeedback(gamePlayFeedback, 'Benar! 🎉', 'correct');
+            } else {
+                showFeedback(gamePlayFeedback, `Salah! Jawaban yang benar adalah ${currentQuestion.answer}. 😔`, 'incorrect');
+            }
+
+            // Disable options temporarily to prevent multiple clicks
+            optionsContainer.querySelectorAll('button').forEach(button => button.disabled = true);
+
+            setTimeout(() => {
+                // Re-enable options (if needed, though page transition will happen)
+                optionsContainer.querySelectorAll('button').forEach(button => button.disabled = false);
+
+                if (questionIndex < 9) { // If it's not the last question (indices 0-8)
+                    questionIndex++;
+                    renderQuestion();
+                } else { // It's the last question (index 9)
+                    goToScore();
+                }
+            }, 1500);
+        }
+
+        function saveScoreLocally() {
+            const newEntry = {
+                playerName: playerName,
+                score: score,
+                timestamp: new Date().toISOString(),
+                gameType: `${gameCategory}-${gameType}`
+            };
+            leaderboardData.push(newEntry);
+            leaderboardData.sort((a, b) => b.score - a.score); // Keep it sorted
+            console.log("Score saved locally (not persisted):", newEntry);
+        }
+
+        function renderLeaderboard() {
+            leaderboardTableBody.innerHTML = ''; // Clear previous entries
+            if (leaderboardData.length === 0) {
+                emptyLeaderboardMessage.classList.remove('d-none');
+                emptyLeaderboardMessage.classList.add('d-block');
+            } else {
+                emptyLeaderboardMessage.classList.remove('d-block');
+                emptyLeaderboardMessage.classList.add('d-none');
+                leaderboardData.forEach((entry, index) => {
+                    const row = leaderboardTableBody.insertRow();
+                    row.className = index % 2 === 0 ? 'bg-light' : ''; // For alternating row colors
+                    row.innerHTML = `
+                        <td class="py-3 px-4 border-bottom border-secondary-subtle fs-5 fw-bold">
+                            ${index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : `${index + 1}.`}
+                        </td>
+                        <td class="py-3 px-4 border-bottom border-secondary-subtle">${entry.playerName}</td>
+                        <td class="py-3 px-4 border-bottom border-secondary-subtle fw-bold text-success">${entry.score}</td>
+                    `;
+                });
+            }
+            lucide.createIcons(); // Re-render icons if any new HTML is injected
+        }
+
+        // New helper function to hide the reset confirmation modal
+        function hideResetConfirmModal() {
+            resetConfirmModal.classList.remove('d-block');
+            resetConfirmModal.classList.add('d-none');
+        }
+
+        function resetLeaderboardLocally() {
+            leaderboardData = [];
+            renderLeaderboard(); // Re-render empty leaderboard
+            hideResetConfirmModal(); // Hide modal immediately after reset logic
+            showFeedback(leaderboardFeedback, 'Peringkat berhasil direset!', 'correct');
+        }
+
+        // --- Event Listeners ---
+        startButton.addEventListener('click', goToGameSelection);
+        leaderboardButtonHome.addEventListener('click', goToLeaderboard);
+        arithmeticCategory.addEventListener('click', () => {
+            gameCategory = 'arithmetic';
+            gameType = ''; // Reset game type
+            arithmeticTypes.classList.remove('d-none');
+            guessingTypes.classList.add('d-none');
+            startGameButton.classList.add('d-none'); // Hide start button until type is selected
+            // Update active state for category buttons
+            arithmeticCategory.classList.add('bg-gradient-to-r', 'from-blue-600', 'to-blue-700', 'ring-4', 'ring-blue-300');
+            arithmeticCategory.classList.remove('btn-blue-gradient');
+            guessingCategory.classList.remove('bg-gradient-to-r', 'from-green-600', 'to-green-700', 'ring-4', 'ring-green-300');
+            guessingCategory.classList.add('btn-green-gradient');
+            // Reset type buttons
+            document.querySelectorAll('#arithmeticTypes button').forEach(btn => {
+                btn.classList.remove('bg-gradient-to-r', 'from-purple-600', 'to-purple-700', 'ring-4', 'ring-purple-300');
+                btn.classList.add('btn-purple-gradient');
+            });
+        });
+
+        guessingCategory.addEventListener('click', () => {
+            gameCategory = 'guessing';
+            gameType = ''; // Reset game type
+            guessingTypes.classList.remove('d-none');
+            arithmeticTypes.classList.add('d-none');
+            startGameButton.classList.add('d-none'); // Hide start button until type is selected
+            // Update active state for category buttons
+            guessingCategory.classList.add('bg-gradient-to-r', 'from-green-600', 'to-green-700', 'ring-4', 'ring-green-300');
+            guessingCategory.classList.remove('btn-green-gradient');
+            arithmeticCategory.classList.remove('bg-gradient-to-r', 'from-blue-600', 'to-blue-700', 'ring-4', 'ring-blue-300');
+            arithmeticCategory.classList.add('btn-blue-gradient');
+            // Reset type buttons
+            document.querySelectorAll('#guessingTypes button').forEach(btn => {
+                btn.classList.remove('bg-gradient-to-r', 'from-red-600', 'to-red-700', 'ring-4', 'ring-red-300');
+                btn.classList.add('btn-red-gradient');
+            });
+        });
+
+        // Event delegation for arithmetic type buttons
+        arithmeticTypes.addEventListener('click', (event) => {
+            if (event.target.tagName === 'BUTTON') {
+                gameType = event.target.dataset.type;
+                startGameButton.classList.remove('d-none');
+                // Update active state for type buttons
+                document.querySelectorAll('#arithmeticTypes button').forEach(btn => {
+                    btn.classList.remove('bg-gradient-to-r', 'from-purple-600', 'to-purple-700', 'ring-4', 'ring-purple-300');
+                    btn.classList.add('btn-purple-gradient');
+                });
+                event.target.classList.add('bg-gradient-to-r', 'from-purple-600', 'to-purple-700', 'ring-4', 'ring-purple-300');
+                event.target.classList.remove('btn-purple-gradient');
+            }
+        });
+
+        // Event delegation for guessing type buttons
+        guessingTypes.addEventListener('click', (event) => {
+            if (event.target.tagName === 'BUTTON') {
+                gameType = event.target.dataset.type;
+                startGameButton.classList.remove('d-none');
+                // Update active state for type buttons
+                document.querySelectorAll('#guessingTypes button').forEach(btn => {
+                    btn.classList.remove('bg-gradient-to-r', 'from-red-600', 'to-red-700', 'ring-4', 'ring-red-300');
+                    btn.classList.add('btn-red-gradient');
+                });
+                event.target.classList.add('bg-gradient-to-r', 'from-red-600', 'to-red-700', 'ring-4', 'ring-red-300');
+                event.target.classList.remove('btn-red-gradient');
+            }
+        });
+
+        startGameButton.addEventListener('click', goToGamePlay);
+        backToHomeFromSelection.addEventListener('click', goToHome);
+        playAgainButton.addEventListener('click', goToGameSelection);
+        leaderboardButtonScore.addEventListener('click', goToLeaderboard);
+        backToHomeFromScore.addEventListener('click', goToHome);
+        backToHomeFromLeaderboard.addEventListener('click', goToHome);
+        resetLeaderboardButton.addEventListener('click', () => {
+            resetConfirmModal.classList.remove('d-none');
+            resetConfirmModal.classList.add('d-block');
+        });
+        confirmResetButton.addEventListener('click', resetLeaderboardLocally);
+        cancelResetButton.addEventListener('click', hideResetConfirmModal); // Use the new hide function
+
+        // Initial setup on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            showPage('home-page');
+            lucide.createIcons(); // Ensure icons are rendered on initial load
+        });
+    </script>
+</body>
+
+</html>
