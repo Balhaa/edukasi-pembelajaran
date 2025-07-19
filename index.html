@@ -1043,6 +1043,30 @@
             lucide.createIcons(); // Ensure icons are rendered on initial load
         });
     </script>
+    <script>
+        // Saat tombol "Reset Peringkat" ditekan, tampilkan modal konfirmasi
+        document.getElementById("resetLeaderboardButton").addEventListener("click", function () {
+            document.getElementById("resetConfirmModal").classList.remove("d-none");
+        });
+
+        // Saat tombol "Batal" ditekan, sembunyikan modal
+        document.getElementById("cancelResetButton").addEventListener("click", function () {
+            document.getElementById("resetConfirmModal").classList.add("d-none");
+        });
+
+        // Saat tombol "Ya, Reset!" ditekan, hapus leaderboard dan sembunyikan modal
+        document.getElementById("confirmResetButton").addEventListener("click", function () {
+            // Kosongkan isi tabel leaderboard
+            const leaderboardBody = document.getElementById("leaderboardTableBody");
+            const emptyMessage = document.getElementById("emptyLeaderboardMessage");
+            leaderboardBody.innerHTML = "";
+            emptyMessage.classList.remove("d-none");
+
+            // Sembunyikan modal konfirmasi
+            document.getElementById("resetConfirmModal").classList.add("d-none");
+        });
+    </script>
+
 </body>
 
 </html>
